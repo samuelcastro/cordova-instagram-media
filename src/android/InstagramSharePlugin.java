@@ -68,7 +68,9 @@ public class InstagramSharePlugin extends CordovaPlugin {
             return true;
         } else if (action.equals("isInstalled")) {
         	this.isInstalled();
-        } else {
+        } else if(action.equals("test")) {
+            this.test();
+         } else {
         	callbackContext.error("Invalid Action");
         }
         return false;
