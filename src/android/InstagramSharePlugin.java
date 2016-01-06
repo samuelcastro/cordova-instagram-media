@@ -68,8 +68,10 @@ public class InstagramSharePlugin extends CordovaPlugin {
             return true;
         } else if (action.equals("isInstalled")) {
         	this.isInstalled();
-        } else if (action.equals("test")) {
-            this.test();
+        } else if (action.equals("shareMedia")) {
+            String imageString = args.getString(0);
+            //String captionString = args.getString(1);
+            this.shareMedia(imageString);
             return true;
          } else {
         	callbackContext.error("Invalid Action");
@@ -86,8 +88,33 @@ public class InstagramSharePlugin extends CordovaPlugin {
 		}
 	}
 
-	public void test() {
+	public void shareMedia(file) {
    	  Log.v("Instagram", "*************** SAMUEL CASTRO SILVA *******************");
+
+    String type = "image/*";
+    //String filename = "/myPhoto.jpg";
+    String mediaPath = Environment.getExternalStorageDirectory() + file;
+
+   	createInstagramIntent(type, mediaPath);
+    }
+
+    private void createInstagramIntent(String type, String mediaPath){
+
+        // Create the new Intent using the 'Send' action.
+        Intent share = new Intent(Intent.ACTION_SEND);
+
+        // Set the MIME type
+        share.setType(type);
+
+        // Create the URI from the media
+        File media = new File(mediaPath);
+        Uri uri = Uri.fromFile(media);
+
+        // Add the URI to the Intent.
+        share.putExtra(Intent.EXTRA_STREAM, uri);
+
+        // Broadcast the Intent.
+        startActivity(Intent.createChooser(share, "Share to"));
     }
 
     private void share(String imageString, String captionString) {
