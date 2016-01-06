@@ -20,3 +20,14 @@
  *
  */
 
+var exec = require('cordova/exec'),
+    cordova = require('cordova');
+
+function InstagramShare() {}
+
+InstagramShare.prototype.test = function(successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "InstagramSharePlugin", "test", []);
+};
+
+module.exports = new InstagramShare();
+
