@@ -61,19 +61,14 @@ public class InstagramSharePlugin extends CordovaPlugin {
 
 		this.cbContext = callbackContext;
 
-        if (action.equals("share")) {
+        if (action.equals("shareMedia")) {
             String imageString = args.getString(0);
             String captionString = args.getString(1);
             this.share(imageString, captionString);
             return true;
         } else if (action.equals("isInstalled")) {
         	this.isInstalled();
-        } else if (action.equals("shareMedia")) {
-            String imageString = args.getString(0);
-            //String captionString = args.getString(1);
-            this.shareMedia(imageString);
-            return true;
-         } else {
+        } else {
         	callbackContext.error("Invalid Action");
         }
         return false;
@@ -87,44 +82,6 @@ public class InstagramSharePlugin extends CordovaPlugin {
 			this.cbContext.error("Application not installed");
 		}
 	}
-
-	public void shareMedia(String imageString) {
-   	  Log.v("Instagram", "*************** SAMUEL CASTRO SILVA *******************");
-
-    String type = "image/*";
-    //String filename = "/myPhoto.jpg";
-    String mediaPath = imageString; //Environment.getExternalStorageDirectory() + imageString;
-
-   	createInstagramIntent(type, mediaPath);
-    }
-
-    private void createInstagramIntent(String type, String mediaPath){
-
-        // Create the new Intent using the 'Send' action.
-        //Intent share = new Intent(Intent.ACTION_SEND);
-
-        // Set the MIME type
-        //share.setType(type);
-
-        // Create the URI from the media
-        File media = new File(mediaPath);
-        Uri uri = Uri.fromFile(media);
-
-        // Add the URI to the Intent.
-        //share.putExtra(Intent.EXTRA_STREAM, uri);
-
-        // Broadcast the Intent.
-        //startActivity(Intent.createChooser(share, "Share to"));
-
-
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                	shareIntent.setType("image/*");
-                	shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                	shareIntent.putExtra(Intent.EXTRA_TEXT, "SAMUEL CASTRO");
-                	shareIntent.setPackage("com.instagram.android");
-
-                	this.cordova.startActivityForResult((CordovaPlugin) this, shareIntent, 12345);
-    }
 
     private void share(String imageString, String captionString) {
         if (imageString != null && imageString.length() > 0) {
