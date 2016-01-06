@@ -26,7 +26,11 @@ var exec = require('cordova/exec'),
 function InstagramShare() {}
 
 InstagramShare.prototype.test = function(successCallback, errorCallback) {
-    exec(successCallback, errorCallback, "InstagramSharePlugin", "test", []);
+    exec(function(param) {
+        alert(JSON.stringify(param));
+    }, function(error) {
+        alert(JSON.stringify(error));
+    }, "InstagramSharePlugin", "test", []);
 };
 
 module.exports = new InstagramShare();
