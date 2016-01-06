@@ -123,7 +123,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
                 	shareIntent.putExtra(Intent.EXTRA_TEXT, "SAMUEL CASTRO");
                 	shareIntent.setPackage("com.instagram.android");
 
-                	this.cordova.startActivity((CordovaPlugin) this, shareIntent, 12345);
+                	this.cordova.startActivityForResult((CordovaPlugin) this, shareIntent, 12345);
     }
 
     private void share(String imageString, String captionString) {
