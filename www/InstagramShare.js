@@ -30,7 +30,7 @@ InstagramShare.prototype.test = function(successCallback, errorCallback) {
         alert(JSON.stringify(param));
     }, function(error) {
         alert(JSON.stringify(error));
-    }, "InstagramSharePlugin", "test", []);
+    }, "InstagramShare", "test", []);
 };
 
 module.exports = new InstagramShare();
