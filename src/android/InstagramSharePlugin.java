@@ -113,8 +113,11 @@ public class InstagramSharePlugin extends CordovaPlugin {
         // Add the URI to the Intent.
         share.putExtra(Intent.EXTRA_STREAM, uri);
 
+        Context context=this.cordova.getActivity().getApplicationContext();
+
         // Broadcast the Intent.
-        startActivity(Intent.createChooser(share, "Share to"));
+        context.startActivity(Intent.createChooser(share, "Share to"));
+        //startActivity(Intent.createChooser(share, "Share to"));
     }
 
     private void share(String imageString, String captionString) {
