@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
-        id="cordova-plugin-device" version="0.2.3">
-    <name>Device</name>
-    <description>Cordova Device Plugin</description>
+        id="cordova-plugin-instagram-share" version="0.2.3">
+    <name>Instagram Media Share</name>
+    <description>Share images or video content using the Instagram application for iOS and Android.</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device</keywords>
     <js-module src="www/device.js" name="device">
