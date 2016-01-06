@@ -27,6 +27,7 @@ function InstagramShare() {}
 
 InstagramShare.prototype.test = function(successCallback, errorCallback) {
     exec(function(param) {
+        alert('SUCCESSO');
         alert(JSON.stringify(param));
     }, function(error) {
         alert(JSON.stringify(error));
