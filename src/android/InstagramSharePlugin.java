@@ -93,7 +93,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
 
     String type = "image/*";
     //String filename = "/myPhoto.jpg";
-    String mediaPath = Environment.getExternalStorageDirectory() + imageString;
+    String mediaPath = imageString; //Environment.getExternalStorageDirectory() + imageString;
 
    	createInstagramIntent(type, mediaPath);
     }
