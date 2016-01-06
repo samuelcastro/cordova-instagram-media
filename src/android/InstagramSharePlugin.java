@@ -88,12 +88,12 @@ public class InstagramSharePlugin extends CordovaPlugin {
 		}
 	}
 
-	public void shareMedia(file) {
+	public void shareMedia(imageString) {
    	  Log.v("Instagram", "*************** SAMUEL CASTRO SILVA *******************");
 
     String type = "image/*";
     //String filename = "/myPhoto.jpg";
-    String mediaPath = Environment.getExternalStorageDirectory() + file;
+    String mediaPath = Environment.getExternalStorageDirectory() + imageString;
 
    	createInstagramIntent(type, mediaPath);
     }

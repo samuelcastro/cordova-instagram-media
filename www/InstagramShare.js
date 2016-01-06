@@ -33,5 +33,9 @@ InstagramShare.prototype.isInstalled = function(successCallback, errorCallback) 
     exec(successCallback, errorCallback, "InstagramShare", "isInstalled", []);
 };
 
+InstagramShare.prototype.shareMedia = function(filePath, successCallback, errorCallback) {
+    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [filePath]);
+};
+
 module.exports = new InstagramShare();
 
