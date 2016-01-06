@@ -88,7 +88,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
 		}
 	}
 
-	public void shareMedia(imageString) {
+	public void shareMedia(String imageString) {
    	  Log.v("Instagram", "*************** SAMUEL CASTRO SILVA *******************");
 
     String type = "image/*";
