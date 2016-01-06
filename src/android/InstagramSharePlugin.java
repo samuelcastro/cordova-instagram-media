@@ -84,18 +84,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
 	}
 
 	public void test() {
-        AlertDialog alertDialog = new AlertDialog.Builder(AlertDialogActivity.this).create();
-        alertDialog.setTitle("Alert Dialog");
-        alertDialog.setMessage("Welcome to dear user.");
-        alertDialog.setIcon(R.drawable.welcome);
-
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        alertDialog.show();
+        System.out.println("*************** SAMUEL CASTRO SILVA *******************");
 	}
 
     private void share(String imageString, String captionString) {
