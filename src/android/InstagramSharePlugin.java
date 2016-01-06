@@ -84,8 +84,8 @@ public class InstagramSharePlugin extends CordovaPlugin {
 	}
 
 	public void test() {
-        System.out.println("*************** SAMUEL CASTRO SILVA *******************");
-	}
+   	  Log.v("Instagram", "*************** SAMUEL CASTRO SILVA *******************");
+    }
 
     private void share(String imageString, String captionString) {
         if (imageString != null && imageString.length() > 0) {
