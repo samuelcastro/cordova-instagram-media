@@ -34,9 +34,9 @@ InstagramShare.prototype.isInstalled = function(successCallback, errorCallback) 
 };
 
 InstagramShare.prototype.shareMedia = function(filePath, caption, successCallback, errorCallback) {
-    var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
+    //var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
     cordova.plugins.clipboard.copy(caption);
-    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [image, caption]);
+    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [filePath, caption]);
 };
 
 module.exports = new InstagramShare();
