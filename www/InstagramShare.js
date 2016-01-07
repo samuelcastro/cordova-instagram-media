@@ -44,25 +44,11 @@ InstagramShare.prototype.isInstalled = function(cb) {
 };
 
 InstagramShare.prototype.shareMedia = function(data, caption, cb) {
-    //this.isInstalled(
-    //    function(version) {
-    //        if(version) {
-                var canvas = document.getElementById(data),
-                    magic = "data:image";
-
-                if (canvas) {
-                    this.shareData(canvas.toDataURL(), caption, cb);
-                } else if (data.slice(0, magic.length) == magic) {
-                    this.shareData(data, caption, cb);
-                } else {
-                    cb("oops, Instagram image data string has to start with 'data:image'.")
-                }
-    //        } else {
-    //            cb('Ops, Instagram app should be installed!');
-    //        }
-    //
-    //    }
-    //);
+    if (data.indexOf('data:image') > -1 ) {
+        this.shareData(data, caption, cb);
+    } else {
+        cb("Instagram image data should be encoded on the base 64 format.")
+    }
 };
 
 InstagramShare.prototype.shareData = function(filePath, caption, cb) {
