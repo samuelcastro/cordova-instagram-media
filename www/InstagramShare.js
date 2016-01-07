@@ -58,11 +58,7 @@ InstagramShare.prototype.shareImage = function(data, caption, cb) {
 };
 
 InstagramShare.prototype.shareVideo = function(data, caption, cb) {
-    if (data.indexOf('data:image') > -1 ) {
-        this.shareVideoData(data, caption, cb);
-    } else {
-        cb("Instagram image data should be encoded on the base 64 format.")
-    }
+     this.shareVideoData(data, caption, cb);
 };
 
 InstagramShare.prototype.shareVideoData = function(data, caption, cb) {

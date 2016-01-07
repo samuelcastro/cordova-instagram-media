@@ -62,9 +62,9 @@ public class InstagramSharePlugin extends CordovaPlugin {
 		this.cbContext = callbackContext;
 
         if (action.equals("shareVideo")) {
-            String imageString = args.getString(0);
+            String videoString = args.getString(0);
             String captionString = args.getString(1);
-            this.shareVideo(imageString, captionString);
+            this.shareVideo(videoString, captionString);
             return true;
         } else if (action.equals("shareImage")) {
             String imageString = args.getString(0);
