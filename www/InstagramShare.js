@@ -65,8 +65,25 @@ InstagramShare.prototype.shareVideo = function(data, caption, cb) {
     }
 };
 
-InstagramShare.prototype.shareVideoData = function() {
+InstagramShare.prototype.shareVideoData = function(data, caption, cb) {
 
+    /**
+     * Calling the cordova exec method passing the native param
+     */
+    exec(
+        function() {
+            if (cordova && cordova.plugins && cordova.plugins.clipboard && caption !== '') {
+                cordova.plugins.clipboard.copy(caption);
+            }
+            cb(null);
+        },
+        function(err) {
+            cb(err);
+        },
+        "InstagramShare",
+        "shareVideo",
+        [data, caption]
+    );
 };
 
 /**

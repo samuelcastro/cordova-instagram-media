@@ -61,7 +61,12 @@ public class InstagramSharePlugin extends CordovaPlugin {
 
 		this.cbContext = callbackContext;
 
-        if (action.equals("shareImage")) {
+        if (action.equals("shareVideo")) {
+            String imageString = args.getString(0);
+            String captionString = args.getString(1);
+            this.shareVideo(imageString, captionString);
+            return true;
+        } else if (action.equals("shareImage")) {
             String imageString = args.getString(0);
             String captionString = args.getString(1);
             this.shareImage(imageString, captionString);
@@ -124,6 +129,25 @@ public class InstagramSharePlugin extends CordovaPlugin {
             this.cbContext.error("Expected one non-empty string argument.");
         }
     }
+
+    private void shareVideo(String videoString, String captionString) {
+
+            // Create the URI from the media
+                File media = new File(videoString);
+                Uri uri = Uri.fromFile(media);
+
+            	Intent shareIntent = new Intent(Intent.ACTION_SEND);
+            	shareIntent.setType("video/*");
+            	shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            	shareIntent.putExtra(Intent.EXTRA_TEXT, captionString);
+            	shareIntent.setPackage("com.instagram.android");
+
+            	this.cordova.startActivityForResult((CordovaPlugin) this, shareIntent, 12345);
+
+            } else {
+                this.cbContext.error("Expected one non-empty string argument.");
+            }
+        }
 
     @Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
