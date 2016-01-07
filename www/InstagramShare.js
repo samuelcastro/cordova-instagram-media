@@ -44,9 +44,9 @@ InstagramShare.prototype.isInstalled = function(cb) {
 };
 
 InstagramShare.prototype.shareMedia = function(data, caption, cb) {
-    this.isInstalled(
-        function(version) {
-            if(version) {
+    //this.isInstalled(
+    //    function(version) {
+    //        if(version) {
                 var canvas = document.getElementById(data),
                     magic = "data:image";
 
@@ -57,12 +57,12 @@ InstagramShare.prototype.shareMedia = function(data, caption, cb) {
                 } else {
                     cb("oops, Instagram image data string has to start with 'data:image'.")
                 }
-            } else {
-                cb('Ops, Instagram app should be installed!');
-            }
-
-        }
-    );
+    //        } else {
+    //            cb('Ops, Instagram app should be installed!');
+    //        }
+    //
+    //    }
+    //);
 };
 
 InstagramShare.prototype.shareData = function(filePath, caption, cb) {
