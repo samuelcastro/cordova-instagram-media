@@ -43,6 +43,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
+import android.database.Cursor;
 
 @TargetApi(Build.VERSION_CODES.FROYO)
 public class InstagramSharePlugin extends CordovaPlugin {
@@ -135,7 +136,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
             try
             {
                 String[] proj = {MediaStore.Video.Media.DATA};
-                Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+                Cursor cursor = cordova.getActivity().getContentResolver().query(contentUri, proj, null, null, null);
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
                 cursor.moveToFirst();
                 return cursor.getString(column_index);
