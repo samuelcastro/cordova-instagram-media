@@ -29,29 +29,63 @@ InstagramShare.prototype.test = function(successCallback, errorCallback) {
     exec(successCallback, errorCallback, "InstagramShare", "test", []);
 };
 
-InstagramShare.prototype.isInstalled = function(successCallback, errorCallback) {
-    exec(successCallback, errorCallback, "InstagramShare", "isInstalled", []);
+InstagramShare.prototype.isInstalled = function(cb) {
+    exec(
+        function(version) {
+            cb(version);
+        },
+        function() {
+            cb(false)
+        },
+        "InstagramShare",
+        "isInstalled",
+        []
+    );
 };
 
-InstagramShare.prototype.shareMedia = function(data, caption, successCallback, errorCallback) {
-    var canvas = document.getElementById(data),
-        magic = "data:image";
+InstagramShare.prototype.shareMedia = function(data, caption, cb) {
+    this.isInstalled(
+        function(version) {
+            if(version) {
+                var canvas = document.getElementById(data),
+                    magic = "data:image";
 
-    if (canvas) {
-        this.shareData(canvas.toDataURL(), caption, successCallback, errorCallback);
-    } else if (data.slice(0, magic.length) == magic) {
-        this.shareData(data, caption, successCallback, errorCallback);
-    }
-    else {
-        errorCallback("oops, Instagram image data string has to start with 'data:image'.")
-    }
+                if (canvas) {
+                    this.shareData(canvas.toDataURL(), caption, cb);
+                } else if (data.slice(0, magic.length) == magic) {
+                    this.shareData(data, caption, cb);
+                } else {
+                    cb("oops, Instagram image data string has to start with 'data:image'.")
+                }
+            } else {
+                cb('Ops, Instagram app should be installed!');
+            }
+
+        }
+    );
 };
 
-InstagramShare.prototype.shareData = function(filePath, caption, successCallback, errorCallback) {
+InstagramShare.prototype.shareData = function(filePath, caption, cb) {
     var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
-    cordova.plugins.clipboard.copy(caption);
-    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [image, caption]);
-}
+
+    /**
+     * Calling the cordova exec method passing the native param
+     */
+    exec(
+        function() {
+            if (cordova && cordova.plugins && cordova.plugins.clipboard && caption !== '') {
+                cordova.plugins.clipboard.copy(caption);
+            }
+            cb(null);
+        },
+        function(err) {
+            cb(err);
+        },
+        "InstagramShare",
+        "shareMedia",
+        [image, caption]
+    );
+};
 
 module.exports = new InstagramShare();
 
