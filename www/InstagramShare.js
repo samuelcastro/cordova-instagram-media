@@ -33,11 +33,25 @@ InstagramShare.prototype.isInstalled = function(successCallback, errorCallback) 
     exec(successCallback, errorCallback, "InstagramShare", "isInstalled", []);
 };
 
-InstagramShare.prototype.shareMedia = function(filePath, caption, successCallback, errorCallback) {
-    //var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
-    cordova.plugins.clipboard.copy(caption);
-    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [filePath, caption]);
+InstagramShare.prototype.shareMedia = function(data, caption, successCallback, errorCallback) {
+    var canvas = document.getElementById(data),
+        magic = "data:image";
+
+    if (canvas) {
+        this.shareData(canvas.toDataURL(), caption, successCallback, errorCallback);
+    } else if (data.slice(0, magic.length) == magic) {
+        this.shareData(data, caption, successCallback, errorCallback);
+    }
+    else {
+        errorCallback("oops, Instagram image data string has to start with 'data:image'.")
+    }
 };
+
+InstagramShare.prototype.shareData = function(filePath, caption, successCallback, errorCallback) {
+    var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
+    cordova.plugins.clipboard.copy(caption);
+    exec(successCallback, errorCallback, "InstagramShare", "shareMedia", [image, caption]);
+}
 
 module.exports = new InstagramShare();
 
