@@ -44,6 +44,7 @@ import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
 import android.database.Cursor;
+import android.provider.MediaStore;
 
 @TargetApi(Build.VERSION_CODES.FROYO)
 public class InstagramSharePlugin extends CordovaPlugin {
