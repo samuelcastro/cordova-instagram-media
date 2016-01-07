@@ -130,7 +130,23 @@ public class InstagramSharePlugin extends CordovaPlugin {
         }
     }
 
-    public String getRealPathFromURI(Uri contentUri) {
+    public String getRealVideoPathFromURI(Uri contentUri)
+        {
+            try
+            {
+                String[] proj = {MediaStore.Video.Media.DATA};
+                Cursor cursor = managedQuery(contentUri, proj, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA);
+                cursor.moveToFirst();
+                return cursor.getString(column_index);
+            }
+            catch (Exception e)
+            {
+                return contentUri.getPath();
+            }
+        }
+
+    public String getRealImagePathFromURI(Uri contentUri) {
         String res = null;
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = cordova.getActivity().getContentResolver().query(contentUri, proj, null, null, null);
@@ -145,7 +161,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
     private void shareVideo(String videoString, String captionString) {
 
             // Create the URI from the media
-                File media = new File(getRealPathFromURI(videoString));
+                File media = new File(this.getRealVideoPathFromURI(videoString));
                 Uri uri = Uri.fromFile(media);
 
             	Intent shareIntent = new Intent(Intent.ACTION_SEND);
