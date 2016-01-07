@@ -25,10 +25,10 @@ var exec = require('cordova/exec'),
 
 function InstagramShare() {}
 
-InstagramShare.prototype.test = function(successCallback, errorCallback) {
-    exec(successCallback, errorCallback, "InstagramShare", "test", []);
-};
-
+/**
+ * Checking if the instagram app is installed
+ * @param cb
+ */
 InstagramShare.prototype.isInstalled = function(cb) {
     exec(
         function(version) {
@@ -43,15 +43,39 @@ InstagramShare.prototype.isInstalled = function(cb) {
     );
 };
 
-InstagramShare.prototype.shareMedia = function(data, caption, cb) {
+/**
+ * Starting the share process
+ * @param data
+ * @param caption
+ * @param cb
+ */
+InstagramShare.prototype.shareImage = function(data, caption, cb) {
     if (data.indexOf('data:image') > -1 ) {
-        this.shareData(data, caption, cb);
+        this.shareImageData(data, caption, cb);
     } else {
         cb("Instagram image data should be encoded on the base 64 format.")
     }
 };
 
-InstagramShare.prototype.shareData = function(filePath, caption, cb) {
+InstagramShare.prototype.shareVideo = function(data, caption, cb) {
+    if (data.indexOf('data:image') > -1 ) {
+        this.shareVideoData(data, caption, cb);
+    } else {
+        cb("Instagram image data should be encoded on the base 64 format.")
+    }
+};
+
+InstagramShare.prototype.shareVideoData = function() {
+
+};
+
+/**
+ * Sharing image
+ * @param filePath
+ * @param caption
+ * @param cb
+ */
+InstagramShare.prototype.shareImageData = function(filePath, caption, cb) {
     var image = filePath.replace(/data:image\/(png|jpeg);base64,/, "");
 
     /**
@@ -68,10 +92,14 @@ InstagramShare.prototype.shareData = function(filePath, caption, cb) {
             cb(err);
         },
         "InstagramShare",
-        "shareMedia",
+        "shareImage",
         [image, caption]
     );
 };
 
+/**
+ * Exporting module
+ * @type {InstagramShare}
+ */
 module.exports = new InstagramShare();
 

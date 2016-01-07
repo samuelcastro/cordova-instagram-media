@@ -61,10 +61,10 @@ public class InstagramSharePlugin extends CordovaPlugin {
 
 		this.cbContext = callbackContext;
 
-        if (action.equals("shareMedia")) {
+        if (action.equals("shareImage")) {
             String imageString = args.getString(0);
             String captionString = args.getString(1);
-            this.share(imageString, captionString);
+            this.shareImage(imageString, captionString);
             return true;
         } else if (action.equals("isInstalled")) {
         	this.isInstalled();
@@ -83,7 +83,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
 		}
 	}
 
-    private void share(String imageString, String captionString) {
+    private void shareImage(String imageString, String captionString) {
         if (imageString != null && imageString.length() > 0) {
         	byte[] imageData = Base64.decode(imageString, 0);
 
