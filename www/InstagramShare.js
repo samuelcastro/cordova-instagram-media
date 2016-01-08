@@ -57,10 +57,22 @@ InstagramShare.prototype.shareImage = function(data, caption, cb) {
     }
 };
 
+/**
+ * Starting the video share process
+ * @param data
+ * @param caption
+ * @param cb
+ */
 InstagramShare.prototype.shareVideo = function(data, caption, cb) {
      this.shareVideoData(data, caption, cb);
 };
 
+/**
+ * Sharing video data
+ * @param data
+ * @param caption
+ * @param cb
+ */
 InstagramShare.prototype.shareVideoData = function(data, caption, cb) {
 
     /**

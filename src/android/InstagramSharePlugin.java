@@ -132,7 +132,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
         }
     }
 
-    public String getRealVideoPathFromURI(Uri contentUri)
+     public String getRealVideoPathFromURI(Uri contentUri)
         {
             try
             {
