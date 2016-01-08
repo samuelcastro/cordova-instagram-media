@@ -163,7 +163,7 @@ public class InstagramSharePlugin extends CordovaPlugin {
     private void shareVideo(String videoString, String captionString) {
 
             // Create the URI from the media
-                File media = new File(this.getRealVideoPathFromURI(videoString));
+                File media = new File(this.getRealVideoPathFromURI(Uri.parse(videoString)));
                 Uri uri = Uri.fromFile(media);
 
             	Intent shareIntent = new Intent(Intent.ACTION_SEND);
