@@ -20,11 +20,11 @@
 */
 
 #import <Cordova/CDV.h>
-#import "CDVInstagramPlugin.h"
+#import "InstagramSharePlugin.h"
 
 static NSString *InstagramId = @"com.burbn.instagram";
 
-@implementation CDVInstagramPlugin
+@implementation InstagramSharePlugin
 
 @synthesize toInstagram;
 @synthesize callbackId;
@@ -45,7 +45,7 @@ static NSString *InstagramId = @"com.burbn.instagram";
 
 }
 
-- (void)share:(CDVInvokedUrlCommand*)command {
+- (void)shareImage:(CDVInvokedUrlCommand*)command {
     self.callbackId = command.callbackId;
     self.toInstagram = FALSE;
     NSString    *objectAtIndex0 = [command argumentAtIndex:0];

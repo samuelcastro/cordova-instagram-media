@@ -22,4 +22,23 @@
         <source-file src="src/android/InstagramSharePlugin.java" target-dir="src/com/samuelcastro/cordova" />
     </platform>
 
+    <platform name="ios">
+        <!-- ios specific elements -->
+        <config-file target="config.xml" parent="/*">
+            <feature name="InstagramShare">
+                <param name="ios-package" value="InstagramSharePlugin"/>
+            </feature>
+        </config-file>
+
+        <!-- custom URLs need to be white listed on iOS 9 -->
+        <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+            <array>
+                <string>instagram</string>
+            </array>
+        </config-file>
+
+        <header-file src="src/ios/InstagramSharePlugin.h" target-dir="InstagramSharePlugin" />
+        <source-file src="src/ios/InstagramSharePlugin.m" target-dir="InstagramSharePlugin" />
+    </platform>
+
 </plugin>

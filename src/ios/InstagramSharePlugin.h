@@ -23,7 +23,7 @@
 
 #import <Cordova/CDVPlugin.h>
 
-@interface CDVInstagramPlugin : CDVPlugin <UIDocumentInteractionControllerDelegate> {}
+@interface InstagramSharePlugin : CDVPlugin <UIDocumentInteractionControllerDelegate> {}
 
 @property (nonatomic) Boolean toInstagram;
 @property (nonatomic, strong) IBOutlet NSString *callbackId;
