@@ -171,9 +171,6 @@ public class InstagramSharePlugin extends CordovaPlugin {
 
             	this.cordova.startActivityForResult((CordovaPlugin) this, shareIntent, 12345);
 
-           // } else {
-            //    this.cbContext.error("Expected one non-empty string argument.");
-           // }
         }
 
     @Override
